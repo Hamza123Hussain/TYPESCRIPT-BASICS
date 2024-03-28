@@ -34,3 +34,70 @@ function caltax(tax:number,taxyear:number=2022):number{
 }
 
 caltax(377,2013)
+
+/// OBJECTSSS
+
+let emp:{
+    readonly id:number, // readonly means this can not be edited
+    name:string,
+    retire:(date:Date)=>void // function propety of an object
+}={
+    id:1,
+    name:'',
+    retire:(date:Date)=> {
+    console.log(date)
+    },
+}
+
+// refinng objs using type alias
+
+type Human={ // this is the type alias
+    // the propties of object defined here
+    // can be used by all object instances
+    readonly id:number,
+    Name:string,
+    Age:number
+}
+
+let person:Human={
+    id:1,
+    Name:'hamza',
+    Age:23
+}
+
+//UNION TYPES
+// using the or oeprator we can give multiple types to a data
+function Kg_to_LB(weight:number|string):number{
+
+
+    if(typeof weight=="number"){// we have to do type of when giving multiple types to a data
+        // type of helps to use propeties of  a given data type
+        return weight*2.2
+    }
+    else{
+        // parse int is a propety of string data type
+        return parseInt(weight)*2.2
+    }
+}
+
+Kg_to_LB(30)
+Kg_to_LB("42")
+
+// intersection types
+
+type Draggable={
+    drag:()=>void}
+
+
+type resize={
+        resize:()=>void}
+
+        // the uiwidget consits of both of the types
+ type UIWIDGET= Draggable&resize       
+
+ let textbox:UIWIDGET={
+    drag:()=>{}, // this is function of first type
+    resize:()=> { // function of second type
+        
+    },
+ }
